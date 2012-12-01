@@ -14,7 +14,7 @@ class base {
 
 	exec {
 		"configure git":
-			command => 'git config --global user.name "Tim Stewart" && git config --global user.email tim.j.stewart@gmail.com && git config --global color.ui true',
+			command => 'git config --global core.editor vim && git config --global user.name "Tim Stewart" && git config --global user.email tim.j.stewart@gmail.com && git config --global color.ui true',
 			path    => '/usr/bin',
 	}
 }
