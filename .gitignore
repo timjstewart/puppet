@@ -1,0 +1,7 @@
+.*.swp
+.*.swo
+auth.conf
+etckeeper-commit-post
+etckeeper-commit-pre
+files/
+puppet.conf

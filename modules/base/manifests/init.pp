@@ -1,5 +1,7 @@
 class base {
 	package { 
+		'curl':
+			ensure => installed;
 		'sudo':
 			ensure => installed;
 		'wget':
@@ -12,9 +14,12 @@ class base {
 			ensure => installed;
 	}
 
-	exec {
-		"configure git":
-			command => 'git config --global core.editor vim && git config --global user.name "Tim Stewart" && git config --global user.email tim.j.stewart@gmail.com && git config --global color.ui true',
-			path    => '/usr/bin',
+	file {
+		'/home/tim/.gitconfig':
+			ensure => file,
+			mode   => 440,
+			owner  => tim,
+			group  => tim,
+			source => 'puppet:///files/.gitconfig';
 	}
 }
