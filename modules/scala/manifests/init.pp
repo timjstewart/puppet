@@ -26,6 +26,13 @@ class scala {
 			group  => root,
 			source => "puppet:///files/akka-${akka_version}.tgz";
 
+		"/etc/puppet/files/scala/sbt.tgz":
+			ensure => file,
+			mode   => 440,
+			owner  => root,
+			group  => root,
+			source => "puppet:///files/sbt.tgz";
+
 		"/etc/puppet/files/scala/play-${play_version}.zip":
 			ensure => directory,
 			mode   => 440,
@@ -50,6 +57,11 @@ class scala {
 			path    => '/usr/bin:/bin',
 			creates => "/home/tim/bin/play-${play_version}",
 			command => "unzip /etc/puppet/files/scala/play-${play_version}.zip -d /home/tim/bin";
+
+		'install SBT':
+			path    => '/usr/bin:/bin',
+			creates => "/usr/bin/sbt",
+			command => "tar xvzf /etc/puppet/files/scala/sbt.tgz -C /usr/bin";
 	}
 
 	file {
@@ -72,7 +84,6 @@ class scala {
 			target => "/home/tim/bin/play-${play_version}";
 	}
 
-	# $sbt_version='0.12.1'
 
 	# $deb_url ="http://scalasbt.artifactoryonline.com/scalasbt/sbt-native-packages/org/scala-sbt/sbt/${sbt_version}/sbt.deb"
 
